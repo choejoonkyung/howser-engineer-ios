@@ -1,16 +1,8 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import Styles from './common/Styles';
+import ScreenRoutes from './common/ScreenRoutes';
 
-const App = () => {
-  return (
-    <NavigationContainer>
-      <SafeAreaView style={Styles.container}>
-        <Text>Hello Worlds!</Text>
-      </SafeAreaView>
-    </NavigationContainer>
-  );
-};
+function App() {
+  return <ScreenRoutes />;
+}
 
 export default App;
