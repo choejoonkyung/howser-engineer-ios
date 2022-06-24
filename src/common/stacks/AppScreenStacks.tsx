@@ -2,11 +2,17 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import DetailsScreen from '../../screens/DetailScreen';
+import OutBoxScreen from '../../screens/OutBoxScreen';
 import DrawerNavigatorStacks from './DrawerNavigatorStacks';
+import OutBoxDetailScreen from '../../screens/OutBoxDetailScreen';
 
 export const SCREENS = {
-  DetailsScreen: {name: 'Details', title: 'Details', component: DetailsScreen},
+  OutBoxScreen: {name: 'OutBox', title: 'OutBox', component: OutBoxScreen},
+  OutBoxDetailScreen: {
+    name: 'OutBox Detail',
+    title: 'OutBox Detail',
+    component: OutBoxDetailScreen,
+  },
 } as const;
 
 export const SCREENSkeys = Object.keys(SCREENS) as (keyof typeof SCREENS)[];
@@ -16,7 +22,7 @@ function AppScreenStacks() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* draw menu stack */}
+        {/* NavigationContainer stacks */}
         <Stack.Screen
           name="HOME"
           options={{
