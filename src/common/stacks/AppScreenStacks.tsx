@@ -16,7 +16,7 @@ function AppScreenStacks() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* menu stack */}
+        {/* draw menu stack */}
         <Stack.Screen
           name="HOME"
           options={{
@@ -25,7 +25,7 @@ function AppScreenStacks() {
           {() => <MenuStacks />}
         </Stack.Screen>
 
-        {/* screen stack */}
+        {/* screen stacks */}
         {SCREENSkeys.map(key => (
           <Stack.Screen
             key={key}
