@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, SafeAreaView, Button} from 'react-native';
 import {ScreenBaseProps} from '.';
-import {RoutePath} from '../common/ScreenRoutes';
+import {SCREENS} from '../common/ScreenRoutes';
 
 interface Props extends ScreenBaseProps {}
 
@@ -12,7 +12,7 @@ function DetailsScreen({navigation}: Props) {
       <Text>Details Screen</Text>
       <Button
         title="더 자세히"
-        onPress={() => navigation.push(RoutePath.Details.name)}
+        onPress={() => navigation.push(SCREENS.DetailsScreen.name)}
       />
     </SafeAreaView>
   );

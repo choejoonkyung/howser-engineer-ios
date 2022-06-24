@@ -4,47 +4,30 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import DetailsScreen from '../screens/DetailScreen';
 import HomeScreen from '../screens/HomeScreen';
-import {Button, Text, View} from 'react-native';
 
+export const SCREENS = {
+  HomeScreen: {name: 'Home', title: 'Home', component: HomeScreen},
+  DetailsScreen: {name: 'Details', title: 'Details', component: DetailsScreen},
+} as const;
+
+const SCREENSkeys = Object.keys(SCREENS) as (keyof typeof SCREENS)[];
 const Stack = createNativeStackNavigator();
 
 function ScreenRoutes() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name={RoutePath.Home.name}
-          component={HomeScreen}
-          options={{
-            title: RoutePath.Home.title,
-            headerLeft: () => (
-              <Button
-                onPress={() => console.log('menu')}
-                title="메뉴"
-                color="#000"
-              />
-            ),
-          }}
-        />
-        <Stack.Screen
-          name={RoutePath.Details.name}
-          component={DetailsScreen}
-          options={{title: RoutePath.Details.title}}
-        />
+        {SCREENSkeys.map(key => (
+          <Stack.Screen
+            key={key}
+            name={SCREENS[key].name}
+            getComponent={() => SCREENS[key].component}
+            options={{title: SCREENS[key].title}}
+          />
+        ))}
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-export const RoutePath = {
-  Home: {
-    name: 'Home',
-    title: '하우저',
-  },
-  Details: {
-    name: 'Details',
-    title: '상세',
-  },
-};
 
 export default ScreenRoutes;
