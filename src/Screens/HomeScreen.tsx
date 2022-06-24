@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Text, SafeAreaView} from 'react-native';
 import {ScreenBaseProps} from '.';
-import {SCREENS} from '../common/ScreenRoutes';
+import {SCREENS} from '../common/stacks/AppScreenStacks';
 
 interface Props extends ScreenBaseProps {}
 

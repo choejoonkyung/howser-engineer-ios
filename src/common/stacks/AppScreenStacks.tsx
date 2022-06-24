@@ -1,22 +1,31 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
-import DetailsScreen from '../screens/DetailScreen';
-import HomeScreen from '../screens/HomeScreen';
+import DetailsScreen from '../../screens/DetailScreen';
+import MenuStacks from './MenuStacks';
+import HomeScreen from '../../screens/HomeScreen';
 
 export const SCREENS = {
-  HomeScreen: {name: 'Home', title: 'Home', component: HomeScreen},
   DetailsScreen: {name: 'Details', title: 'Details', component: DetailsScreen},
 } as const;
 
 const SCREENSkeys = Object.keys(SCREENS) as (keyof typeof SCREENS)[];
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
-function ScreenRoutes() {
+function AppScreenStacks() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          options={{
+            headerShown: false,
+          }}>
+          {() => <MenuStacks />}
+        </Stack.Screen>
         {SCREENSkeys.map(key => (
           <Stack.Screen
             key={key}
@@ -30,4 +39,4 @@ function ScreenRoutes() {
   );
 }
 
-export default ScreenRoutes;
+export default AppScreenStacks;

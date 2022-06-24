@@ -1,8 +1,8 @@
 import React from 'react';
-import ScreenRoutes from './common/ScreenRoutes';
+import AppScreenStacks from './common/stacks/AppScreenStacks';
 
 function App() {
-  return <ScreenRoutes />;
+  return <AppScreenStacks />;
 }
 
 export default App;
