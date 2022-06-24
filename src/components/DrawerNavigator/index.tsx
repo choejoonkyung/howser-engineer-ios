@@ -6,6 +6,7 @@ import {
 import React from 'react';
 import {Text, View} from 'react-native';
 import CommonStyles from '../../common/CommonStyles';
+import Icon from '../Icon';
 import styles from './styles';
 
 function DrawerNavigator(props: DrawerContentComponentProps) {

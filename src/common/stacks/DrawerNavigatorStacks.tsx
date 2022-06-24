@@ -4,6 +4,7 @@ import DrawerNavigator from '../../components/DrawerNavigator';
 import HomeScreen from '../../screens/HomeScreen';
 import {SCREENS} from './AppScreenStacks';
 import {Text} from 'react-native';
+import Icon from '../../components/Icon';
 
 const Drawer = createDrawerNavigator();
 
@@ -16,14 +17,14 @@ function DrawerNavigatorStacks() {
         name="HOWSER"
         component={HomeScreen}
         options={{
-          drawerIcon: () => <Text>icon</Text>,
+          drawerIcon: () => <Icon name="Schedule" />,
         }}
       />
       <Drawer.Screen
         name={SCREENS.DetailsScreen.name}
         component={SCREENS.DetailsScreen.component}
         options={{
-          drawerIcon: () => <Text>icon</Text>,
+          drawerIcon: () => <Icon name="Memo" />,
         }}
       />
     </Drawer.Navigator>
