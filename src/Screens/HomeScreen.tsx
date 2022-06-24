@@ -1,8 +1,11 @@
 import React from 'react';
 import {Button, Text, SafeAreaView} from 'react-native';
+import {ScreenBaseProps} from '.';
 import {RoutePath} from '../common/ScreenRoutes';
 
-function HomeScreen({navigation}) {
+interface Props extends ScreenBaseProps {}
+
+function HomeScreen({navigation}: Props) {
   return (
     <SafeAreaView
       style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
