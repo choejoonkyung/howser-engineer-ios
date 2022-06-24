@@ -6,8 +6,8 @@ const Drawer = createDrawerNavigator();
 
 function MenuStacks() {
   return (
-    <Drawer.Navigator initialRouteName="Home">
-      <Drawer.Screen name="home" component={HomeScreen} />
+    <Drawer.Navigator initialRouteName="HOWSER">
+      <Drawer.Screen name="HOWSER" component={HomeScreen} />
     </Drawer.Navigator>
   );
 }
