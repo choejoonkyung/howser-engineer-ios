@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import DetailsScreen from '../../screens/DetailScreen';
-import MenuStacks from './MenuStacks';
+import DrawerNavigatorStacks from './DrawerNavigatorStacks';
 
 export const SCREENS = {
   DetailsScreen: {name: 'Details', title: 'Details', component: DetailsScreen},
@@ -22,7 +22,7 @@ function AppScreenStacks() {
           options={{
             headerShown: false,
           }}>
-          {() => <MenuStacks />}
+          {() => <DrawerNavigatorStacks />}
         </Stack.Screen>
 
         {/* screen stacks */}

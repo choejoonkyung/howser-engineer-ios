@@ -7,7 +7,7 @@ import {Text} from 'react-native';
 
 const Drawer = createDrawerNavigator();
 
-function MenuStacks() {
+function DrawerNavigatorStacks() {
   return (
     <Drawer.Navigator
       initialRouteName="HOWSER"
@@ -30,4 +30,4 @@ function MenuStacks() {
   );
 }
 
-export default MenuStacks;
+export default DrawerNavigatorStacks;
