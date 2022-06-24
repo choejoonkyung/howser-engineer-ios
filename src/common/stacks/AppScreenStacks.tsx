@@ -9,7 +9,7 @@ export const SCREENS = {
   DetailsScreen: {name: 'Details', title: 'Details', component: DetailsScreen},
 } as const;
 
-const SCREENSkeys = Object.keys(SCREENS) as (keyof typeof SCREENS)[];
+export const SCREENSkeys = Object.keys(SCREENS) as (keyof typeof SCREENS)[];
 const Stack = createNativeStackNavigator();
 
 function AppScreenStacks() {
