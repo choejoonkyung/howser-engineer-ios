@@ -1,18 +1,30 @@
-import React from 'react';
-import {Button, SafeAreaView} from 'react-native';
+import React, {useLayoutEffect} from 'react';
+import {SafeAreaView, View} from 'react-native';
 import {ScreenBaseProps} from '..';
 import CommonStyles from '../../common/CommonStyles';
+import Icon from '../../components/Icon';
+import styles from './styles';
 
 interface Props extends ScreenBaseProps {}
 
 function OutBoxDetail({navigation}: Props) {
-  navigation.setOptions({
-    headerShown: false,
-  });
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
 
   return (
     <SafeAreaView style={CommonStyles.container}>
-      <Button title="끄기" onPress={() => navigation.goBack()} />
+      <View style={styles.container}>
+        <Icon
+          name="Close"
+          width={25}
+          height={25}
+          onPress={() => navigation.goBack()}
+          style={styles.button}
+        />
+      </View>
     </SafeAreaView>
   );
 }
