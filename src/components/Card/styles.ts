@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import Colors from '../../common/Colors';
 
 export default StyleSheet.create({
   container: {
@@ -18,7 +19,7 @@ export default StyleSheet.create({
     position: 'absolute',
     left: 18,
     bottom: 15,
-    color: '#fff',
+    color: Colors.white,
     fontSize: 24,
     fontWeight: '400',
   },
@@ -33,6 +34,7 @@ export default StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
     lineHeight: 24,
+    color: Colors.dark,
   },
   actionBtn: {},
 });
