@@ -1,14 +1,16 @@
 import React from 'react';
 import {Button, Text, View} from 'react-native';
 import CommonStyles from '../../common/CommonStyles';
+import {useOpenModal} from '../Modal/useOpenModal';
 import styles from './styles';
 
 interface Props {
   title: string;
   desc: string;
+  onPress: () => void;
 }
 
-function Card({title, desc}: Props) {
+function Card({title, desc, onPress}: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.imgContainer}>
@@ -20,7 +22,7 @@ function Card({title, desc}: Props) {
         </Text>
       </View>
       <View style={CommonStyles.divider} />
-      <Button title="Action" />
+      <Button title="Action" onPress={onPress} />
     </View>
   );
 }
