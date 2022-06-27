@@ -8,10 +8,6 @@ import styles from './styles';
 
 interface Props extends ScreenBaseProps {}
 
-interface Data {
-  arr: number[];
-}
-
 function HomeScreen({}: Props) {
   const {open: openModal} = useOpenModal();
 

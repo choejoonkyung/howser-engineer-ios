@@ -2,30 +2,36 @@ import React, {useCallback, useMemo} from 'react';
 import {Modal, Pressable, StyleSheet, Text, View} from 'react-native';
 import {useModal} from './useModal';
 
+interface Data {
+  arr: number[];
+}
+
 export function useOpenModal() {
   const {open} = useModal();
 
   const openModal = useCallback(() => {
-    return open(({onConfirm, onCancel}) => {
+    return open<Data>(({onConfirm, onCancel}) => {
       return (
         <Modal animationType="slide" transparent={true}>
           <View style={modalStyles.centeredView}>
             <View style={modalStyles.modalView}>
               <Text style={modalStyles.modalText}>모달테스트입니다.</Text>
-              <Pressable
-                style={[modalStyles.button, modalStyles.buttonClose]}
-                onPress={() => onCancel()}>
-                <Text style={modalStyles.textStyle}>닫기</Text>
-              </Pressable>
-              <Pressable
-                style={[modalStyles.button, modalStyles.buttonClose]}
-                onPress={() =>
-                  onConfirm({
-                    arr: [1, 2, 3],
-                  })
-                }>
-                <Text style={modalStyles.textStyle}>수락</Text>
-              </Pressable>
+              <View style={modalStyles.buttons}>
+                <Pressable
+                  style={[modalStyles.button, modalStyles.buttonClose]}
+                  onPress={() => onCancel()}>
+                  <Text style={modalStyles.textStyle}>닫기</Text>
+                </Pressable>
+                <Pressable
+                  style={[modalStyles.button, modalStyles.buttonOpen]}
+                  onPress={() =>
+                    onConfirm({
+                      arr: [1, 2, 3],
+                    })
+                  }>
+                  <Text style={modalStyles.textStyle}>수락</Text>
+                </Pressable>
+              </View>
             </View>
           </View>
         </Modal>
@@ -67,7 +73,7 @@ const modalStyles = StyleSheet.create({
     backgroundColor: '#F194FF',
   },
   buttonClose: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#bbb',
   },
   textStyle: {
     color: 'white',
@@ -77,5 +83,9 @@ const modalStyles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+  },
+  buttons: {
+    display: 'flex',
+    flexDirection: 'row',
   },
 });

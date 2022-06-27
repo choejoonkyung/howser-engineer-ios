@@ -22,9 +22,9 @@ type RenderFunction<T> = (event: {
   onCancel: () => void;
 }) => ReactElement | ComponentType<T>;
 
-type ModalOpen<P extends CommonModalProps = CommonModalProps> = (
+type ModalOpen<P extends CommonModalProps = CommonModalProps> = <T>(
   render: RenderFunction<P>,
-) => Promise<Resolver>;
+) => Promise<Resolver<T>>;
 
 interface Props {
   children: ReactNode;
@@ -42,16 +42,16 @@ export const ModalContext = createContext<ModalContextValue>({
 
 const noop = () => {};
 
-interface Resolver {
+interface Resolver<T> {
   comfirm: boolean;
-  data?: any;
+  data: T;
 }
 
 function ModalProvider({children}: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalNode, setModalNode] = useState<ReactNode>(null);
 
-  const resolver = useRef<(result: Resolver) => void>(noop);
+  const resolver = useRef<(result: Resolver<any>) => void>(noop);
 
   const handleConfirm = useCallback((data?: any) => {
     resolver.current?.({
@@ -64,15 +64,16 @@ function ModalProvider({children}: Props) {
   const handleCancel = useCallback(() => {
     resolver.current?.({
       comfirm: false,
+      data: null,
     });
     setIsModalOpen(false);
   }, []);
 
   const open = useCallback(
-    <T extends CommonModalProps>(
+    <T extends CommonModalProps, P>(
       render: RenderFunction<T>,
-    ): Promise<Resolver> => {
-      return new Promise<Resolver>(resolve => {
+    ): Promise<Resolver<P>> => {
+      return new Promise<Resolver<P>>(resolve => {
         resolver.current = resolve;
 
         const element = render({
@@ -105,7 +106,7 @@ function ModalProvider({children}: Props) {
   );
 }
 
-export function useModal<T>() {
+export function useModal() {
   return useContext(ModalContext);
 }
 
