@@ -3,19 +3,18 @@ import {SafeAreaView, View, FlatList} from 'react-native';
 import {ScreenBaseProps} from '..';
 import CommonStyles from '../../common/CommonStyles';
 import Card from '../../components/Card';
-import {useOpenModal} from '../../components/Modal/useOpenModal';
+import {useSelectModal} from '../../components/Modal/useSelectModal';
 import styles from './styles';
 
 interface Props extends ScreenBaseProps {}
 
 function HomeScreen({}: Props) {
-  const {open: openModal} = useOpenModal();
+  const {open} = useSelectModal();
 
-  const open = async () => {
-    const b = await openModal();
+  const openModal = async () => {
+    const b = await open();
     if (b.comfirm) {
-      console.log('수락되었습니다.');
-      console.log(b.data.arr);
+      console.log(b.data.count);
     }
   };
 
@@ -28,7 +27,7 @@ function HomeScreen({}: Props) {
             <Card
               title={`제목입니다 #${index + 1}`}
               desc="설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다."
-              onPress={() => open()}
+              onPress={() => openModal()}
             />
           )}
           ItemSeparatorComponent={() => <View style={CommonStyles.separator} />}

@@ -1,7 +1,5 @@
 import React, {useCallback} from 'react';
 import {SafeAreaView, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Text} from 'react-native-svg';
 import {ScreenBaseProps} from '..';
 import CommonStyles from '../../common/CommonStyles';
 import {SCREENS} from '../../common/stacks/AppScreenStacks';

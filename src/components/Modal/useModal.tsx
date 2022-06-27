@@ -17,13 +17,13 @@ interface CommonModalProps {
   onClose: () => void;
 }
 
-type RenderFunction<T> = (event: {
-  onConfirm: (data?: any) => void;
+type RenderFunction<T, P> = (event: {
+  onConfirm: (data?: P) => void;
   onCancel: () => void;
 }) => ReactElement | ComponentType<T>;
 
 type ModalOpen<P extends CommonModalProps = CommonModalProps> = <T>(
-  render: RenderFunction<P>,
+  render: RenderFunction<P, T>,
 ) => Promise<Resolver<T>>;
 
 interface Props {
@@ -71,7 +71,7 @@ function ModalProvider({children}: Props) {
 
   const open = useCallback(
     <T extends CommonModalProps, P>(
-      render: RenderFunction<T>,
+      render: RenderFunction<T, P>,
     ): Promise<Resolver<P>> => {
       return new Promise<Resolver<P>>(resolve => {
         resolver.current = resolve;
