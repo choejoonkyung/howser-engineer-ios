@@ -4,24 +4,29 @@ import Input, {InputHandle} from '../Input';
 import {useModal} from './useModal';
 
 interface Data {
-  count: string;
+  floor: string;
 }
 
-export function useSelectModal() {
+interface Props {
+  title: string;
+  placeHolder: string;
+}
+
+export function useInputModal({title, placeHolder}: Props) {
   const {open} = useModal();
   const ref = useRef<InputHandle>(null);
 
   const openModal = useCallback(() => {
     return open<Data>(({onConfirm, onCancel}) => {
       return (
-        <Modal animationType="slide" transparent={true}>
+        <Modal animationType="fade" transparent={true}>
           <View style={modalStyles.centeredView}>
             <View style={modalStyles.modalView}>
-              <Text style={modalStyles.modalText}>신청 층수 직접 입력</Text>
+              <Text style={modalStyles.modalText}>{title}</Text>
               <Input
                 ref={ref}
                 style={modalStyles.input}
-                placeholder="Enter your name"
+                placeholder={placeHolder}
               />
 
               <View style={modalStyles.buttons}>
@@ -34,10 +39,10 @@ export function useSelectModal() {
                   style={[modalStyles.button, modalStyles.buttonOpen]}
                   onPress={() => {
                     onConfirm({
-                      count: ref.current?.getValue()!,
+                      floor: ref.current?.getValue()!,
                     });
                   }}>
-                  <Text style={modalStyles.textStyle}>수락</Text>
+                  <Text style={modalStyles.textStyle}>확인</Text>
                 </Pressable>
               </View>
             </View>
@@ -55,7 +60,7 @@ const modalStyles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    marginTop: 40,
   },
   input: {
     height: 40,
@@ -68,6 +73,7 @@ const modalStyles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
+    width: '60%',
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -101,5 +107,7 @@ const modalStyles = StyleSheet.create({
   buttons: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
   },
 });

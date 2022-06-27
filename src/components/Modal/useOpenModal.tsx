@@ -12,7 +12,7 @@ export function useOpenModal() {
   const openModal = useCallback(() => {
     return open<Data>(({onConfirm, onCancel}) => {
       return (
-        <Modal animationType="slide" transparent={true}>
+        <Modal animationType="slide">
           <View style={modalStyles.centeredView}>
             <View style={modalStyles.modalView}>
               <Text style={modalStyles.modalText}>모달테스트입니다.</Text>

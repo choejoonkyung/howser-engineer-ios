@@ -3,18 +3,21 @@ import {SafeAreaView, View, FlatList} from 'react-native';
 import {ScreenBaseProps} from '..';
 import CommonStyles from '../../common/CommonStyles';
 import Card from '../../components/Card';
-import {useSelectModal} from '../../components/Modal/useSelectModal';
+import {useInputModal} from '../../components/Modal/useInputModal';
 import styles from './styles';
 
 interface Props extends ScreenBaseProps {}
 
 function HomeScreen({}: Props) {
-  const {open} = useSelectModal();
+  const {open} = useInputModal({
+    title: '층수를 직접 입력해주세요.',
+    placeHolder: 'e.g. 12층',
+  });
 
   const openModal = async () => {
-    const b = await open();
-    if (b.comfirm) {
-      console.log(b.data.count);
+    const result = await open();
+    if (result.comfirm) {
+      console.log('floor:', result.data.floor);
     }
   };
 
