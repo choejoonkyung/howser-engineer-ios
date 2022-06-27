@@ -12,4 +12,8 @@ export default StyleSheet.create({
   separator: {
     height: 20,
   },
+  flex: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
 });

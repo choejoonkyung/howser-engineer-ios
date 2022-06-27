@@ -3,6 +3,7 @@ import {SafeAreaView, View, FlatList} from 'react-native';
 import {ScreenBaseProps} from '..';
 import CommonStyles from '../../common/CommonStyles';
 import Card from '../../components/Card';
+import {useCheckBoxModal} from '../../components/Modal/useCheckBoxModal';
 import {useInputModal} from '../../components/Modal/useInputModal';
 import styles from './styles';
 
@@ -21,6 +22,18 @@ function HomeScreen({}: Props) {
     }
   };
 
+  const {open: open2} = useCheckBoxModal({
+    title: '체크를 직접 진행하세요.',
+  });
+
+  const openModal2 = async () => {
+    const result = await open2();
+    if (result.comfirm) {
+      console.log('bool:', result.data.bool);
+      console.log('bool:', result.data.id);
+    }
+  };
+
   return (
     <SafeAreaView style={CommonStyles.container}>
       <View style={styles.list}>
@@ -31,6 +44,7 @@ function HomeScreen({}: Props) {
               title={`제목입니다 #${index + 1}`}
               desc="설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다."
               onPress={() => openModal()}
+              onPress2={() => openModal2()}
             />
           )}
           ItemSeparatorComponent={() => <View style={CommonStyles.separator} />}
